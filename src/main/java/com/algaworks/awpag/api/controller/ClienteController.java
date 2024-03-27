@@ -12,7 +12,7 @@ public class ClienteController {
     @GetMapping("/clientes")
     public List<Clientes> listar(){
         Clientes cliente1 = new Clientes(1L, "João", "joao@email.com", "11941418851");
-        cliente1.setNome("João Green");
+        cliente1.setNome("João Green Silva");
         Clientes cliente2 = new Clientes(1L, "Maria Brown", "maria@email.com", "11948451478");
         
         return Arrays.asList(cliente1, cliente2);
