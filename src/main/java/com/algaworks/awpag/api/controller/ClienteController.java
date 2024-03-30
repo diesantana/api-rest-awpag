@@ -1,7 +1,9 @@
 package com.algaworks.awpag.api.controller;
 
+import com.algaworks.awpag.domain.exception.DomainException;
 import com.algaworks.awpag.domain.model.Cliente;
 import com.algaworks.awpag.domain.repository.ClienteRepository;
+import com.algaworks.awpag.domain.services.CadastroClienteService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import java.util.Optional;
     public class ClienteController {
         
         private final ClienteRepository clienteRepository;
+        private final CadastroClienteService clienteService;
         
         @GetMapping
         public List<Cliente> listar(){
@@ -41,7 +44,7 @@ import java.util.Optional;
         @PostMapping
         @ResponseStatus(HttpStatus.CREATED)
         public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-            return clienteRepository.save(cliente);
+            return clienteService.salvar(cliente);
         }
         
         @PutMapping("/{clienteId}")
@@ -51,8 +54,8 @@ import java.util.Optional;
             }
             
             cliente.setId(clienteId);
-            cliente = clienteRepository.save(cliente);
-            
+            //cliente = clienteRepository.save(cliente);
+            cliente = clienteService.salvar(cliente);
             return ResponseEntity.ok(cliente);
         }
         
@@ -63,11 +66,19 @@ import java.util.Optional;
                 return ResponseEntity.notFound().build();
             }
             // Executa a ação de excluir
-            clienteRepository.deleteById(clienteId);
+            //clienteRepository.deleteById(clienteId);
+            clienteService.excluir(clienteId);
+            
+            
             // Retorna o código HTTP 204 noContent (sem conteúdo), 
             // significa que deu tudo certo porém não estamos retornando nenhum corpo
             return ResponseEntity.noContent().build();
             
+        }
+        
+        @ExceptionHandler(DomainException.class)
+        public ResponseEntity<String> capturarException(DomainException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
