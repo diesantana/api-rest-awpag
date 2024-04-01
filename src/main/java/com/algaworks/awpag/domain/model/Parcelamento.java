@@ -15,6 +15,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity // Espeficia que a classe é uma entidade 
 @Getter // Gera os getters 
@@ -45,6 +46,6 @@ public class Parcelamento {
     @Positive
     @Max(12)
     private Integer quantidadeParcelas;
-    private LocalDateTime dataCriacao;
+    private OffsetDateTime dataCriacao;
     
 }
