@@ -75,10 +75,5 @@ import java.util.Optional;
             return ResponseEntity.noContent().build();
             
         }
-        
-        @ExceptionHandler(DomainException.class)
-        public ResponseEntity<String> capturarException(DomainException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
     }
 

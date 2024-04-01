@@ -36,10 +36,4 @@ public class ParcelamentoController {
     public Parcelamento cadastrar(@Valid @RequestBody Parcelamento parcelamento) {
         return parcelamentoService.cadastrar(parcelamento);
     }
-    
-    @ExceptionHandler(DomainException.class)
-    public ResponseEntity<String> capturarException(DomainException e) { 
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-    
 }
