@@ -1,7 +1,7 @@
 
-# Projeto API REST (Imersão REST API AlgaWork)
+# Projeto API REST (Imersão REST API AlgaWorks)
 
-Este é um projeto de exemplo desenvolvido durante a imersão da AlgaWork. O projeto utiliza o Spring Boot 3.
+Este é um projeto de exemplo desenvolvido durante a imersão da AlgaWorks. O projeto utiliza o Spring Boot 3.
 
 
 ## Tecnologias
